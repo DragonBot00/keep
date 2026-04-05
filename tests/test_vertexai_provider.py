@@ -5,6 +5,7 @@ Follows the same unittest pattern as test_pagerduty_provider.py.
 Uses the mock payloads from alerts_mock.py verbatim, but passes deep copies
 to avoid mutation side-effects (incident.pop() inside _format_alert).
 """
+
 import copy
 import unittest
 
@@ -120,9 +121,7 @@ class TestVertexaiProviderFormatAlert(unittest.TestCase):
         )
 
     def test_severity_map_error(self):
-        self.assertEqual(
-            VertexaiProvider.SEVERITIES_MAP["ERROR"], AlertSeverity.HIGH
-        )
+        self.assertEqual(VertexaiProvider.SEVERITIES_MAP["ERROR"], AlertSeverity.HIGH)
 
     def test_severity_map_warning(self):
         self.assertEqual(
@@ -130,9 +129,7 @@ class TestVertexaiProviderFormatAlert(unittest.TestCase):
         )
 
     def test_severity_map_info(self):
-        self.assertEqual(
-            VertexaiProvider.SEVERITIES_MAP["INFO"], AlertSeverity.INFO
-        )
+        self.assertEqual(VertexaiProvider.SEVERITIES_MAP["INFO"], AlertSeverity.INFO)
 
     def test_unknown_severity_defaults_to_warning(self):
         """An unrecognised severity label should fall back to WARNING."""

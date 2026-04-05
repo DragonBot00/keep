@@ -485,9 +485,7 @@ To send Vertex AI alerts from GCP Monitoring to Keep, follow these steps:
             ):
                 return True
             # Also check by resource type
-            if "aiplatform.googleapis.com" in (
-                getattr(threshold, "filter", "") or ""
-            ):
+            if "aiplatform.googleapis.com" in (getattr(threshold, "filter", "") or ""):
                 return True
         return False
 
@@ -552,7 +550,9 @@ To send Vertex AI alerts from GCP Monitoring to Keep, follow these steps:
             content = str(documentation)
 
         # Severity: check policy_user_labels first, then metadata
-        policy_user_labels = incident.get("policyUserLabels", incident.get("policy_user_labels", {}))
+        policy_user_labels = incident.get(
+            "policyUserLabels", incident.get("policy_user_labels", {})
+        )
         metadata = incident.get("metadata", {})
         system_labels = metadata.get("systemLabels", metadata.get("system_labels", {}))
 
@@ -645,7 +645,9 @@ To send Vertex AI alerts from GCP Monitoring to Keep, follow these steps:
             raw_severity = incident.pop("severity", "WARNING").upper()
         else:
             raw_severity = policy_user_labels.get("severity", "WARNING").upper()
-        severity = VertexaiProvider.SEVERITIES_MAP.get(raw_severity, AlertSeverity.WARNING)
+        severity = VertexaiProvider.SEVERITIES_MAP.get(
+            raw_severity, AlertSeverity.WARNING
+        )
 
         # Timestamp
         event_time = incident.get("started_at")
