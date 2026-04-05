@@ -236,7 +236,7 @@ class Site24X7Provider(BaseProvider):
 
         labels = event.get("LABELS", "")
         if isinstance(labels, str) and labels:
-            labels = [l.strip() for l in labels.split(",") if l.strip()]
+            labels = [lbl.strip() for lbl in labels.split(",") if lbl.strip()]
         elif not isinstance(labels, list):
             labels = []
 
