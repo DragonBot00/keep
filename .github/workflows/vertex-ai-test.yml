@@ -42,6 +42,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install poetry
+          poetry lock --no-update
           poetry install --with dev
 
       - name: Run Vertex AI provider tests
